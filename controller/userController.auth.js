@@ -19,12 +19,12 @@ const login = async (req, res) => {
     }
 }
 const register = async (req, res) => {
+    const { name, email, password } = req.body;
     try {
-        const { email, password } = req.body;
         const salt = bcrypt.genSaltSync(10)
         const hashedPassword = bcrypt.hashSync(password, salt)
-        const newUser = await User.create({ email, password: hashedPassword })
-        res.status(201).json(newUser)
+        const newUser = await User.create({ name, email, password: hashedPassword })
+        res.status(201).json({ id: newUser._id, email: newUser.email })
     } catch (error) {
         console.log(error);
     }
