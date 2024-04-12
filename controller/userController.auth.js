@@ -1,7 +1,7 @@
 const User = require("../model/user.model");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-import { errorHandler } from '../util/error.js';
+const { errorHandler } = require('../util/error.js')
 
 const login = async (req, res) => {
     try {
